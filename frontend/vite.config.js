@@ -16,9 +16,9 @@ export default defineConfig({
      */
     proxy: {
       '/api': {
-        target: 'http://localhost:8081',
+        target: 'https://portfolio-1ckx.onrender.com',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       }
     }
   }
