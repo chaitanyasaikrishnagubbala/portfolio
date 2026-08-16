@@ -25,7 +25,7 @@ public class DataInitializer {
     @Transactional
     public CommandLineRunner seedSkills(SkillRepository repo) {
         return args -> {
-            if (repo.count() > 0) return; // Already seeded
+            repo.deleteAll();
 
             repo.saveAll(List.of(
                 // Languages
@@ -57,15 +57,7 @@ public class DataInitializer {
                 skill("Postman",      "tools", 90, "API Testing, Automated Collections, Environment Vars", 18),
                 skill("Maven",        "tools", 85, "Dependency Management, Build Automation", 19),
                 skill("VS Code",      "tools", 92, "Frontend & Scripting IDE", 20),
-                skill("IntelliJ IDEA","tools", 90, "Primary Java & Spring Boot Development IDE", 21),
-
-                // Core Subjects
-                skill("Data Structures",   "core", 92, "Arrays, Trees, Graphs, HashTables, Heaps", 22),
-                skill("Algorithms",        "core", 90, "Sorting, Searching, Dynamic Programming, Greedy", 23),
-                skill("OOP",              "core", 95, "Encapsulation, Inheritance, Polymorphism, Abstraction", 24),
-                skill("DBMS",             "core", 90, "ER Diagrams, Relational Algebra, Transactions", 25),
-                skill("Operating Systems","core", 85, "Process Management, Deadlocks, Memory Allocation", 26),
-                skill("Computer Networks","core", 84, "TCP/IP, OSI Model, HTTP/HTTPS, Sockets", 27)
+                skill("IntelliJ IDEA","tools", 90, "Primary Java & Spring Boot Development IDE", 21)
             ));
         };
     }
@@ -138,7 +130,7 @@ public class DataInitializer {
     @Transactional
     public CommandLineRunner seedEducation(EducationRepository repo) {
         return args -> {
-            if (repo.count() > 0) return;
+            repo.deleteAll();
 
             repo.saveAll(List.of(
                 education(
@@ -154,7 +146,7 @@ public class DataInitializer {
                     "Intermediate (MPC - Maths, Physics, Chemistry)",
                     "Junior College / State Board of Intermediate Education",
                     "Andhra Pradesh", "2020 - 2022",
-                    "Percentage / Grade", "Top Distinction",
+                    "Percentage", "95%",
                     "Strong Mathematical & Analytical Foundation",
                     "Completed Higher Secondary Education focusing on Advanced Mathematics, Physics, and Analytical Logic with academic excellence.",
                     2
@@ -163,8 +155,8 @@ public class DataInitializer {
                     "Secondary School Certificate (SSC)",
                     "State Board of Secondary Education",
                     "Andhra Pradesh", "2019 - 2020",
-                    "GPA", "10.0 / 10.0",
-                    "Perfect 10.0 GPA Score",
+                    "Percentage", "85%",
+                    "Academic Distinction",
                     "Graduated secondary school with top honors across all academic disciplines, building the core foundation for science and technology.",
                     3
                 )

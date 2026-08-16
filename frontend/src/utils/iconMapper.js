@@ -36,13 +36,7 @@ export const getSkillStyles = (name) => {
     'Postman': { icon: SiPostman, color: 'text-orange-500' },
     'Maven': { icon: SiApachemaven, color: 'text-red-400' },
     'VS Code': { icon: FaCode, color: 'text-blue-400' },
-    'IntelliJ IDEA': { icon: SiIntellijidea, color: 'text-purple-500' },
-    'Data Structures': { icon: FaLayerGroup, color: 'text-amber-400' },
-    'Algorithms': { icon: FaCogs, color: 'text-purple-400' },
-    'OOP': { icon: FaProjectDiagram, color: 'text-cyan-400' },
-    'DBMS': { icon: FaDatabase, color: 'text-blue-400' },
-    'Operating Systems': { icon: FaMemory, color: 'text-pink-400' },
-    'Computer Networks': { icon: FaNetworkWired, color: 'text-teal-400' }
+    'IntelliJ IDEA': { icon: SiIntellijidea, color: 'text-purple-500' }
   };
   return map[name] || { icon: FaCheckCircle, color: 'text-cyan-400' };
 };

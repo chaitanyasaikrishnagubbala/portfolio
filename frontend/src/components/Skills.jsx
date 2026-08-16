@@ -11,7 +11,6 @@ const categories = [
   { id: 'languages', label: 'Languages' },
   { id: 'database', label: 'Database' },
   { id: 'tools', label: 'Tools' },
-  { id: 'core', label: 'Core Subjects' },
 ];
 
 const Skills = () => {
@@ -43,7 +42,7 @@ const Skills = () => {
             Skills & <span className="text-gradient">Technologies</span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Comprehensive toolkit spanning Java backend engineering, modern React frontend development, and core computer science fundamentals.
+            Comprehensive toolkit spanning Java backend engineering, modern React frontend development, and core tools & databases.
           </p>
         </motion.div>
 
@@ -95,41 +94,23 @@ const Skills = () => {
                     className="bg-glass-card rounded-2xl p-5 border border-white/10 hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-md"
                   >
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="p-3 rounded-xl bg-slate-900/90 border border-white/10 group-hover:scale-110 transition-transform">
-                            <Icon className={`text-2xl ${color}`} />
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-white text-base group-hover:text-cyan-400 transition-colors">
-                              {skill.name}
-                            </h3>
-                            <span className="text-[10px] font-mono text-slate-400 capitalize">
-                              {skill.category}
-                            </span>
-                          </div>
+                      <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-xl bg-slate-900/90 border border-white/10 group-hover:scale-110 transition-transform">
+                          <Icon className={`text-2xl ${color}`} />
                         </div>
-                        <span className="text-xs font-mono font-bold text-cyan-400">
-                          {skill.level}%
-                        </span>
+                        <div>
+                          <h3 className="font-bold text-white text-base group-hover:text-cyan-400 transition-colors">
+                            {skill.name}
+                          </h3>
+                          <span className="text-[10px] font-mono text-slate-400 capitalize">
+                            {skill.category}
+                          </span>
+                        </div>
                       </div>
 
-                      <p className="text-xs text-slate-400 leading-relaxed min-h-[36px]">
+                      <p className="text-xs text-slate-400 leading-relaxed">
                         {skill.description}
                       </p>
-                    </div>
-
-                    {/* Animated Proficiency Bar */}
-                    <div className="mt-4 pt-3 border-t border-white/10">
-                      <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, ease: 'easeOut' }}
-                          className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-full shadow-[0_0_8px_#3B82F6]"
-                        />
-                      </div>
                     </div>
                   </motion.div>
                 );
