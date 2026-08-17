@@ -5,8 +5,8 @@ import { FaLock, FaUser, FaShieldAlt, FaArrowRight } from 'react-icons/fa';
 import { login } from '../../services/authService';
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState('chaitanya4123');
-  const [password, setPassword] = useState('chaitanya@@gubb');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -78,6 +78,7 @@ const AdminLogin = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter admin username"
+                autoComplete="username"
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 focus:border-cyan-400 focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"
               />
             </div>
@@ -97,6 +98,7 @@ const AdminLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter admin password"
+                autoComplete="current-password"
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 focus:border-cyan-400 focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"
               />
             </div>
