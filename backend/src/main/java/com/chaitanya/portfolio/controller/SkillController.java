@@ -2,17 +2,15 @@ package com.chaitanya.portfolio.controller;
 
 import com.chaitanya.portfolio.dto.ApiResponseDTO;
 import com.chaitanya.portfolio.dto.SkillDTO;
+import com.chaitanya.portfolio.model.Skill;
 import com.chaitanya.portfolio.service.SkillService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * REST controller for the Skills section.
- * Endpoint: GET /api/skills
- * Endpoint: GET /api/skills?category={category}
- */
 @RestController
 @RequestMapping("/api/skills")
 public class SkillController {
@@ -23,22 +21,31 @@ public class SkillController {
         this.skillService = skillService;
     }
 
-    /**
-     * Returns all skills, optionally filtered by category.
-     * Matches the category IDs used in the frontend Skills component filter tabs:
-     * all | backend | frontend | languages | database | tools | core
-     *
-     * @param category optional query param to filter by category
-     * @return 200 OK with ApiResponseDTO wrapping the skill list
-     */
     @GetMapping
     public ResponseEntity<ApiResponseDTO<List<SkillDTO>>> getSkills(
             @RequestParam(required = false) String category) {
-
         List<SkillDTO> skills = (category != null && !category.isBlank())
                 ? skillService.getSkillsByCategory(category)
                 : skillService.getAllSkills();
-
         return ResponseEntity.ok(ApiResponseDTO.ok(skills));
+    }
+
+    @PostMapping
+    public ResponseEntity<ApiResponseDTO<SkillDTO>> createSkill(@Valid @RequestBody Skill skill) {
+        SkillDTO created = skillService.createSkill(skill);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponseDTO.ok(created, "Skill created successfully"));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponseDTO<SkillDTO>> updateSkill(@PathVariable Long id, @Valid @RequestBody Skill skill) {
+        SkillDTO updated = skillService.updateSkill(id, skill);
+        return ResponseEntity.ok(ApiResponseDTO.ok(updated, "Skill updated successfully"));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponseDTO<Void>> deleteSkill(@PathVariable Long id) {
+        skillService.deleteSkill(id);
+        return ResponseEntity.ok(ApiResponseDTO.<Void>ok(null, "Skill deleted successfully"));
     }
 }

@@ -45,7 +45,7 @@ public class ContactController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(ApiResponseDTO.ok(response.message(), response));
+                .body(ApiResponseDTO.ok(response, response.message()));
     }
 
     /**

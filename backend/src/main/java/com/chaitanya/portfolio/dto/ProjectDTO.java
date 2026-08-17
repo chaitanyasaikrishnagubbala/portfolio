@@ -21,6 +21,8 @@ public record ProjectDTO(
         List<String> architecture,
         String githubUrl,
         String demoUrl,
+        String imageUrl,
+        String status,
         Integer sortOrder
 ) {
     /** Maps a Project entity to a ProjectDTO, splitting pipe-delimited fields. */
@@ -36,6 +38,8 @@ public record ProjectDTO(
                 splitPipe(project.getArchitecture()),
                 project.getGithubUrl(),
                 project.getDemoUrl(),
+                project.getImageUrl(),
+                project.getStatus(),
                 project.getSortOrder()
         );
     }

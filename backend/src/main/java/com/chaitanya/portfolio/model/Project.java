@@ -59,6 +59,12 @@ public class Project {
     @Column(name = "demo_url", length = 300)
     private String demoUrl;
 
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    @Column(length = 50)
+    private String status = "Completed";
+
     /** Display ordering — lower numbers appear first */
     @Column(name = "sort_order")
     private Integer sortOrder = 0;

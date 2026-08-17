@@ -1,8 +1,0 @@
-CREATE TABLE IF NOT EXISTS contact_messages (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    subject VARCHAR(200),
-    message TEXT NOT NULL,
-    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);

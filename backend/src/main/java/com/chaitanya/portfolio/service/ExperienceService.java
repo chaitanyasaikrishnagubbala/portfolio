@@ -1,13 +1,13 @@
 package com.chaitanya.portfolio.service;
 
 import com.chaitanya.portfolio.dto.ExperienceDTO;
+import com.chaitanya.portfolio.model.Experience;
 
 import java.util.List;
 
-/**
- * Contract for the Experience business logic layer.
- */
 public interface ExperienceService {
-    /** Returns all experience cards ordered by sort_order. */
     List<ExperienceDTO> getAllExperience();
+    ExperienceDTO createExperience(Experience experience);
+    ExperienceDTO updateExperience(Long id, Experience experience);
+    void deleteExperience(Long id);
 }

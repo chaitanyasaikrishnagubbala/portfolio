@@ -18,13 +18,18 @@ public record ApiResponseDTO<T>(
         return new ApiResponseDTO<>(true, "Success", data);
     }
 
-    /** Convenience factory for successful responses with a custom message. */
-    public static <T> ApiResponseDTO<T> ok(String message, T data) {
+    /** Convenience factory for successful responses with data and a custom message. */
+    public static <T> ApiResponseDTO<T> ok(T data, String message) {
         return new ApiResponseDTO<>(true, message, data);
     }
 
     /** Convenience factory for error responses. */
     public static <T> ApiResponseDTO<T> error(String message) {
+        return new ApiResponseDTO<>(false, message, null);
+    }
+
+    /** Convenience factory for error responses with status code context. */
+    public static <T> ApiResponseDTO<T> error(String message, int status) {
         return new ApiResponseDTO<>(false, message, null);
     }
 }

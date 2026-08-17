@@ -95,8 +95,10 @@ const Footer = () => {
             </span>
           </div>
 
-          <div className="font-mono text-slate-500">
-            © 2026 Gubbala Chaitanya Sai Krishna. All rights reserved.
+          <div className="font-mono text-slate-500 flex items-center gap-3">
+            <span>© 2026 Gubbala Chaitanya Sai Krishna. All rights reserved.</span>
+            <span>•</span>
+            <a href="/admin/login" className="hover:text-cyan-400 transition-colors underline decoration-dashed">Admin Login</a>
           </div>
         </div>
 
