@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaLock, FaUser, FaShieldAlt, FaArrowRight } from 'react-icons/fa';
 import { login } from '../../services/authService';
@@ -120,12 +120,12 @@ const AdminLogin = () => {
 
         {/* Footer Link */}
         <div className="pt-4 border-t border-white/10 text-center">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-xs font-mono text-slate-400 hover:text-cyan-300 transition-colors"
           >
             ← Back to Public Portfolio
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>

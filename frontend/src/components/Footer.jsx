@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaEnvelope, FaChevronUp, FaHeart } from 'react-icons/fa';
 import { SiLeetcode, SiCodechef, SiSpringboot, SiReact } from 'react-icons/si';
 
@@ -98,7 +99,7 @@ const Footer = () => {
           <div className="font-mono text-slate-500 flex items-center gap-3">
             <span>© 2026 Gubbala Chaitanya Sai Krishna. All rights reserved.</span>
             <span>•</span>
-            <a href="/admin/login" className="hover:text-cyan-400 transition-colors underline decoration-dashed">Admin Login</a>
+            <Link to="/admin/login" className="hover:text-cyan-400 transition-colors underline decoration-dashed">Admin Login</Link>
           </div>
         </div>
 
