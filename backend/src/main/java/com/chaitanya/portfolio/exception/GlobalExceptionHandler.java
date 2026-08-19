@@ -99,8 +99,12 @@ public class GlobalExceptionHandler {
         System.err.println("[GlobalExceptionHandler] Unhandled exception: " + ex.getMessage());
         ex.printStackTrace();
 
+        String msg = (ex.getMessage() != null && !ex.getMessage().isBlank())
+                ? ex.getClass().getSimpleName() + ": " + ex.getMessage()
+                : "An unexpected error occurred: " + ex.getClass().getName();
+
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponseDTO.error("An unexpected error occurred. Please try again later."));
+                .body(ApiResponseDTO.error(msg));
     }
 }
