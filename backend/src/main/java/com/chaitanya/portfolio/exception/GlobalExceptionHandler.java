@@ -3,6 +3,10 @@ package com.chaitanya.portfolio.exception;
 import com.chaitanya.portfolio.dto.ApiResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +42,41 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * Handles JSON parse errors or missing/malformed request bodies.
+     * Returns 400 Bad Request.
+     */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiResponseDTO<Void>> handleHttpMessageNotReadable(
+            HttpMessageNotReadableException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponseDTO.error("Malformed JSON request body: " + ex.getMostSpecificCause().getMessage()));
+    }
+
+    /**
+     * Handles authentication failures (BadCredentialsException, AuthenticationException).
+     * Returns 401 Unauthorized.
+     */
+    @ExceptionHandler({BadCredentialsException.class, AuthenticationException.class})
+    public ResponseEntity<ApiResponseDTO<Void>> handleAuthenticationException(Exception ex) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(ApiResponseDTO.error(ex.getMessage() != null ? ex.getMessage() : "Invalid username or password", 401));
+    }
+
+    /**
+     * Handles access denied failures (AccessDeniedException).
+     * Returns 403 Forbidden.
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ApiResponseDTO<Void>> handleAccessDenied(AccessDeniedException ex) {
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(ApiResponseDTO.error("Access denied: " + ex.getMessage(), 403));
+    }
+
+    /**
      * Handles ResourceNotFoundException (our custom not-found signal).
      * Returns 404 Not Found.
      */
@@ -58,6 +97,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponseDTO<Void>> handleGenericException(Exception ex) {
         // Log the actual error on the server side
         System.err.println("[GlobalExceptionHandler] Unhandled exception: " + ex.getMessage());
+        ex.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)

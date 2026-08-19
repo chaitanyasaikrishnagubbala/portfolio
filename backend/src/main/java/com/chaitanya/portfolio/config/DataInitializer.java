@@ -37,10 +37,12 @@ public class DataInitializer {
         return args -> {
             try {
                 // 1. Admin User
-                if (!adminRepo.existsByUsername(adminUsername)) {
+                String targetUsername = (adminUsername != null && !adminUsername.isBlank()) ? adminUsername : "chaitanya4123";
+                String targetPassword = (adminPassword != null && !adminPassword.isBlank()) ? adminPassword : "chaitanya@@gubb";
+                if (!adminRepo.existsByUsername(targetUsername)) {
                     AdminUser admin = new AdminUser();
-                    admin.setUsername(adminUsername);
-                    admin.setPassword(encoder.encode(adminPassword));
+                    admin.setUsername(targetUsername);
+                    admin.setPassword(encoder.encode(targetPassword));
                     admin.setRole("ROLE_ADMIN");
                     adminRepo.save(admin);
                 }

@@ -28,7 +28,7 @@ public class Achievement {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(length = 50)
+    @Column(name = "achievement_year", length = 50)
     private String year;
 
     /** Pipe-separated highlights list */
