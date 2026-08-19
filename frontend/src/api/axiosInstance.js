@@ -4,7 +4,7 @@ import axios from 'axios';
  * Centralized Axios instance.
  */
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://portfolio-1ckx.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
